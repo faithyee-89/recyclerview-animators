@@ -1,39 +1,30 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion COMPILE_SDK_VERSION as int
+  compileSdk COMPILE_SDK_VERSION as int
 
   defaultConfig {
-    minSdkVersion MIN_SDK_VERSION as int
-    targetSdkVersion TARGET_SDK_VERSION as int
+    minSdk MIN_SDK_VERSION as int
+    targetSdk TARGET_SDK_VERSION as int
     versionCode VERSION_CODE as int
     versionName VERSION_NAME
   }
 
-  // SigningConfigs
-  apply from: '../signingConfigs/debug.gradle', to: android
-
   buildTypes {
     debug {
       debuggable true
-      signingConfig signingConfigs.debug
     }
     release {
       debuggable false
-      zipAlignEnabled true
     }
   }
 }
 
-repositories {
-  // maven { url = "https://oss.sonatype.org/content/repositories/snapshots"}
-}
-
 dependencies {
   implementation project(':animators')
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-  implementation "androidx.appcompat:appcompat:1.2.0"
-  implementation "androidx.recyclerview:recyclerview:1.1.0"
-  implementation 'com.squareup.picasso:picasso:2.8'
+  implementation "androidx.appcompat:appcompat:1.6.1"
+  implementation "androidx.recyclerview:recyclerview:1.2.1"
+  implementation "com.github.bumptech.glide:glide:4.14.2"
 }
